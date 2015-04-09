@@ -79,7 +79,7 @@ task downloadFiles(dependsOn: directories, type: Download) {
 
 task cloneWebp(type: GitCloneTask) {
     dir = file("${downloads}/libwebp-0.4.2")
-    uri = 'https://chromium.googlesource.com/webm/libwebp'
+    uri = 'https://github.com/webmproject/libwebp/'
     treeish = 'v0.4.2'
     outputs.dir dir
 }
@@ -166,6 +166,7 @@ def makeNdkTasks(String name) {
     }
 
     task "ndk_clean_$name"(type: Exec) {
+        ignoreExitValue true
         commandLine getNdkBuildFullPath(),
             'NDK_PROJECT_PATH=null',
             'NDK_APPLICATION_MK=../Application.mk',
